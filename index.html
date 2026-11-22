@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Tramonto Joias e Semijoias</title>
-<meta name="description" content="Semijoias banhadas a ouro 18k e folheadas a prata. Antialérgicas, com 1 ano de garantia. Peça pelo WhatsApp.">
+<meta name="description" content="O brilho do sol em sua pele. Semijoias banhadas a ouro 18k e folheadas a prata, em Recife. Peça pelo WhatsApp.">
 <meta name="theme-color" content="#D17830">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tramonto Joias e Semijoias">
@@ -76,6 +76,7 @@
     aspect-ratio: 1 / 0.92;
     overflow: hidden;
   }
+  .capa-ceu { position: absolute; inset: 0; will-change: transform; }
   .capa img {
     width: 100%;
     height: 100%;
@@ -83,7 +84,15 @@
     object-position: 50% 30%;
     -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
             mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
-    animation: nascer 1.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .brilhos { position: absolute; inset: 0; pointer-events: none; }
+  .brilhos svg {
+    position: absolute;
+    width: var(--t, 1rem);
+    aspect-ratio: 1;
+    fill: #FFF4DF;
+    filter: drop-shadow(0 0 6px rgba(255, 236, 200, .9));
+    opacity: 0;
   }
   @media (min-width: 34rem) {
     .capa img {
@@ -98,21 +107,27 @@
     width: 1px; height: 1px;
     overflow: hidden; clip: rect(0 0 0 0);
   }
-  @keyframes nascer {
-    from { opacity: 0; transform: scale(1.06) translateY(1.5%); filter: saturate(.7); }
-    to   { opacity: 1; transform: none; filter: none; }
-  }
 
   main {
     width: var(--col);
     margin-inline: auto;
   }
 
+  .frase {
+    margin: -2.25rem 0 0.6rem;
+    text-align: center;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.1rem, 9.5vw, 2.75rem);
+    line-height: 1.05;
+    color: var(--ink);
+    text-wrap: balance;
+  }
   .sobre {
-    margin: -1.25rem 0 1.75rem;
+    margin: 0 0 1.75rem;
     text-align: center;
     color: var(--ink);
-    font-size: 0.97rem;
+    font-size: 0.95rem;
     line-height: 1.55;
     text-wrap: balance;
   }
@@ -154,11 +169,23 @@
   .link .detalhe { font-size: 0.82rem; opacity: 0.82; }
 
   .link--whats {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     background: var(--sand);
     color: var(--ink);
     box-shadow: 0 10px 30px -14px rgba(58, 10, 12, 0.7);
   }
   .link--whats:hover { background: #FBE9D5; }
+  .reflexo {
+    position: absolute;
+    inset: -20% auto -20% 0;
+    width: 40%;
+    z-index: -1;
+    background: linear-gradient(100deg, transparent, rgba(235, 199, 126, .55) 45%, rgba(255, 248, 235, .9) 50%, rgba(235, 199, 126, .55) 55%, transparent);
+    transform: translateX(-150%) skewX(-12deg);
+    pointer-events: none;
+  }
   .link--whats .detalhe { opacity: 0.7; }
 
   /* ---------- Vitrine ---------- */
@@ -287,7 +314,7 @@
     font-size: 0.82rem;
     color: rgba(247, 223, 196, 0.7);
   }
-  footer svg { width: 2.6rem; margin: 0 auto 0.6rem; display: block; color: var(--gold); }
+  footer svg { width: 3.4rem; overflow: visible; margin: 0 auto 0.6rem; display: block; color: var(--gold); }
   footer p { margin: 0.15rem 0; }
   footer .marca {
     font-family: var(--display);
@@ -305,10 +332,19 @@
 
 <div class="capa">
   <h1>Tramonto Joias e Semijoias</h1>
-  <img src="/assets/capa.webp" width="900" height="900" alt="Logo da Tramonto Joias e Semijoias sobre um pôr do sol no mar" fetchpriority="high">
+  <div class="capa-ceu">
+    <img src="/assets/capa.webp" width="900" height="900" alt="Logo da Tramonto Joias e Semijoias sobre um pôr do sol no mar" fetchpriority="high">
+  </div>
+  <div class="brilhos" aria-hidden="true">
+    <svg viewBox="0 0 20 20" style="left:24%;top:33%;--t:1.1rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg viewBox="0 0 20 20" style="left:72%;top:27%;--t:.8rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg viewBox="0 0 20 20" style="left:79%;top:52%;--t:1.3rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg viewBox="0 0 20 20" style="left:47%;top:70%;--t:.7rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+  </div>
 </div>
 
 <main>
+  <p class="frase">O brilho do sol em sua pele</p>
   <p class="sobre">Semijoias banhadas a <strong>ouro 18k</strong> e folheadas a <strong>prata</strong>. Todas antialérgicas, com 1 ano de garantia.</p>
 
   <ul class="links">
@@ -319,6 +355,7 @@
           <span class="titulo">Fazer pedido no WhatsApp</span>
           <span class="detalhe">(75) 99148-5009</span>
         </span>
+        <span class="reflexo" aria-hidden="true"></span>
       </a>
     </li>
     <li>
@@ -331,11 +368,11 @@
       </a>
     </li>
     <li>
-      <a class="link" href="https://www.instagram.com/semijoiasdamile" target="_blank" rel="noopener">
+      <a class="link" href="https://www.instagram.com/tramonto.semijoias" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg>
         <span>
           <span class="titulo">Instagram</span>
-          <span class="detalhe">@semijoiasdamile</span>
+          <span class="detalhe">@tramonto.semijoias</span>
         </span>
       </a>
     </li>
@@ -358,20 +395,24 @@
   </section>
 
   <ul class="garantias">
-    <li><b>18k</b>Banho de 10 a 12 milésimos de ouro</li>
-    <li><b>1 ano</b>De garantia em todas as peças</li>
+    <li><b><span class="conta" data-ate="18">18</span>k</b>Banho de 10 a 12 milésimos de ouro</li>
+    <li><b><span class="conta" data-ate="12">12</span> meses</b>De garantia em todas as peças</li>
   </ul>
 </main>
 
 <footer>
   <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-    <path d="M14 28a18 18 0 0 1 36 0"/><path d="M20 28a12 12 0 0 1 24 0"/>
+    <defs><clipPath id="acima-do-mar"><rect x="0" y="-20" width="64" height="48"/></clipPath></defs>
+    <g clip-path="url(#acima-do-mar)"><g id="sol"><path d="M14 28a18 18 0 0 1 36 0"/><path d="M20 28a12 12 0 0 1 24 0"/></g></g>
     <path d="M4 28h56M12 33h40M22 38h20"/>
   </svg>
   <p class="marca">TRAMONTO</p>
-  <p>Joias e semijoias</p>
+  <p>Joias e semijoias em Recife, PE</p>
 </footer>
 
+<script src="/assets/js/gsap.min.js"></script>
+<script src="/assets/js/ScrollTrigger.min.js"></script>
+<script src="/assets/js/SplitText.min.js"></script>
 <script>
   const WHATS = "5575991485009";
   const pecas = [
@@ -405,15 +446,100 @@
     </li>`;
   }).join("");
 
+  const reduzir = matchMedia("(prefers-reduced-motion: reduce)");
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  /* Filtros: as peças saem e as escolhidas entram em sequência */
   const botoes = document.querySelectorAll(".filtros button");
+  let trocando;
   botoes.forEach(b => b.addEventListener("click", () => {
+    if (b.getAttribute("aria-pressed") === "true") return;
     const f = b.dataset.filtro;
+    const itens = [...lista.querySelectorAll(".peca")];
+    const aplicar = () => {
+      itens.forEach(li => { li.hidden = f !== "todas" && li.dataset.cat !== f; });
+      lista.scrollLeft = 0;
+    };
     botoes.forEach(x => x.setAttribute("aria-pressed", String(x === b)));
-    lista.querySelectorAll(".peca").forEach(li => {
-      li.hidden = f !== "todas" && li.dataset.cat !== f;
-    });
-    lista.scrollTo({ left: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    if (reduzir.matches) { aplicar(); return; }
+    gsap.killTweensOf(itens);
+    const saindo = itens.filter(li => !li.hidden);
+    trocando = gsap.timeline()
+      .to(saindo, { autoAlpha: 0, y: 14, scale: 0.96, duration: 0.22, ease: "power2.in", stagger: 0.02 })
+      .add(() => {
+        aplicar();
+        gsap.fromTo(itens.filter(li => !li.hidden),
+          { autoAlpha: 0, y: 18, scale: 0.94 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.4)", stagger: 0.06, clearProps: "transform,opacity,visibility" });
+      });
   }));
+
+  /* Coreografia: só para quem não pediu menos movimento */
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+
+    // 1. Abertura: o céu clareia, a frase sobe letra a letra, os links chegam em fila
+    const frase = SplitText.create(".frase", { type: "words,chars", mask: "words" });
+    const abertura = gsap.timeline({ defaults: { ease: "expo.out" } });
+    abertura
+      .from(".capa img", { autoAlpha: 0, scale: 1.12, duration: 2 })
+      .from(frase.chars, { yPercent: 110, duration: 1, stagger: 0.022 }, "-=1.3")
+      .from(".sobre", { autoAlpha: 0, y: 14, duration: 0.9 }, "-=0.7")
+      .from(".links li", { autoAlpha: 0, y: 28, duration: 0.9, stagger: 0.09 }, "-=0.65");
+
+    // 2. Brilhos piscando sobre o sol, como reflexo em joia
+    gsap.utils.toArray(".brilhos svg").forEach((estrela, n) => {
+      gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(1.8, 4.2), delay: 1.4 + n * 0.55 })
+        .fromTo(estrela, { autoAlpha: 0, scale: 0, rotate: -45 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.45, ease: "back.out(2)" })
+        .to(estrela, { autoAlpha: 0, scale: 0, rotate: 45, duration: 0.55, ease: "power2.in" }, "+=0.15");
+    });
+
+    // 3. Reflexo dourado atravessando o botão do WhatsApp
+    gsap.fromTo(".reflexo", { xPercent: -150 }, { xPercent: 360, duration: 1.2, ease: "power2.inOut", repeat: -1, repeatDelay: 3.6, delay: 2.4 });
+
+    // 4. O sol da capa afunda devagar enquanto a página rola
+    gsap.to(".capa-ceu", {
+      yPercent: 18, ease: "none",
+      scrollTrigger: { trigger: ".capa", start: "top top", end: "bottom top", scrub: true }
+    });
+
+    // 5. Título da vitrine e peças entrando
+    const titulo = SplitText.create("#vitrine-titulo", { type: "words,chars", mask: "words" });
+    gsap.from(titulo.chars, {
+      yPercent: 110, duration: 0.9, ease: "expo.out", stagger: 0.018,
+      scrollTrigger: { trigger: ".vitrine", start: "top 82%", once: true }
+    });
+    gsap.from(".filtros button", {
+      autoAlpha: 0, y: 12, duration: 0.6, ease: "power3.out", stagger: 0.05,
+      scrollTrigger: { trigger: ".filtros", start: "top 88%", once: true }
+    });
+    gsap.from(".peca", {
+      autoAlpha: 0, x: 70, rotate: 2, duration: 1, ease: "expo.out", stagger: 0.08,
+      scrollTrigger: { trigger: ".pecas", start: "top 85%", once: true }
+    });
+
+    // 6. Números da garantia contando
+    gsap.utils.toArray(".conta").forEach(el => {
+      const alvo = { v: 0 };
+      gsap.to(alvo, {
+        v: +el.dataset.ate, duration: 1.4, ease: "power2.out",
+        onUpdate: () => { el.textContent = Math.round(alvo.v); },
+        scrollTrigger: { trigger: el, start: "top 90%", once: true }
+      });
+    });
+    gsap.from(".garantias li", {
+      autoAlpha: 0, y: 24, duration: 0.8, ease: "power3.out", stagger: 0.1,
+      scrollTrigger: { trigger: ".garantias", start: "top 90%", once: true }
+    });
+
+    // 7. No rodapé, o sol do logo se põe no mar
+    gsap.fromTo("#sol", { y: -10 }, {
+      y: 11, ease: "none",
+      scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: 0.6 }
+    });
+
+    return () => { frase.revert(); titulo.revert(); };
+  });
 </script>
 </body>
 </html>
