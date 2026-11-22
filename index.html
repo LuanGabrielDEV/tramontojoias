@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tramonto Joias e Semijoias</title>
+<meta name="description" content="Semijoias banhadas a ouro 18k e folheadas a prata. Antialérgicas, com 1 ano de garantia. Peça pelo WhatsApp.">
+<meta name="theme-color" content="#D17830">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tramonto Joias e Semijoias">
+<meta property="og:description" content="Coleção Jardim Brilhante. Semijoias antialérgicas com 1 ano de garantia.">
+<meta property="og:image" content="/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/italiana.woff2" crossorigin>
+<link rel="preload" as="image" href="/assets/capa.webp">
+<style>
+  @font-face { font-family: "Italiana"; src: url(/assets/fonts/italiana.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Hanken Grotesk"; src: url(/assets/fonts/hanken-400.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Hanken Grotesk"; src: url(/assets/fonts/hanken-500.woff2) format("woff2"); font-weight: 500; font-display: swap; }
+  @font-face { font-family: "Hanken Grotesk"; src: url(/assets/fonts/hanken-600.woff2) format("woff2"); font-weight: 600; font-display: swap; }
+
+  :root {
+    /* Entardecer: do laranja da capa ao vinho da coleção */
+    --dusk-1: #D17830;
+    --dusk-2: #B54A26;
+    --dusk-3: #7E1E1A;
+    --dusk-4: #4A0D10;
+    --dusk-5: #2B0709;
+    --sand: #F7DFC4;
+    --sand-deep: #EFC9A0;
+    --gold: #EBC77E;
+    --ink: #3A0A0C;
+    --leaf: #5C7F45;
+
+    --display: "Italiana", "Didot", serif;
+    --body: "Hanken Grotesk", system-ui, sans-serif;
+
+    --col: min(100% - 2.5rem, 27rem);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--sand);
+    background:
+      linear-gradient(180deg,
+        var(--dusk-1) 0,
+        var(--dusk-1) 22rem,
+        var(--dusk-2) 34rem,
+        var(--dusk-3) 52rem,
+        var(--dusk-4) 72rem,
+        var(--dusk-5) 100%);
+    background-color: var(--dusk-5);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--sand);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Capa ---------- */
+  .capa {
+    position: relative;
+    width: min(100%, 34rem);
+    margin-inline: auto;
+    aspect-ratio: 1 / 0.92;
+    overflow: hidden;
+  }
+  .capa img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+            mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+    animation: nascer 1.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @media (min-width: 34rem) {
+    .capa img {
+      -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%), linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+      -webkit-mask-composite: source-in;
+              mask-image: linear-gradient(180deg, #000 70%, transparent 100%), linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+              mask-composite: intersect;
+    }
+  }
+  .capa h1 {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+  }
+  @keyframes nascer {
+    from { opacity: 0; transform: scale(1.06) translateY(1.5%); filter: saturate(.7); }
+    to   { opacity: 1; transform: none; filter: none; }
+  }
+
+  main {
+    width: var(--col);
+    margin-inline: auto;
+  }
+
+  .sobre {
+    margin: -1.25rem 0 1.75rem;
+    text-align: center;
+    color: var(--ink);
+    font-size: 0.97rem;
+    line-height: 1.55;
+    text-wrap: balance;
+  }
+  .sobre strong { font-weight: 600; }
+
+  /* ---------- Links ---------- */
+  .links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+  .link {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 3.75rem;
+    padding: 0.5rem 1.25rem 0.5rem 0.6rem;
+    border-radius: 999px;
+    text-decoration: none;
+    background: rgba(58, 10, 12, 0.14);
+    box-shadow: inset 0 0 0 1px rgba(247, 223, 196, 0.45);
+    color: var(--sand);
+    transition: transform .18s ease, background-color .18s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .link:hover { background: rgba(58, 10, 12, 0.26); }
+  .link:active { transform: scale(0.98); }
+  .link svg {
+    width: 1.35rem; height: 1.35rem;
+    justify-self: center;
+    fill: none; stroke: currentColor; stroke-width: 1.6;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .link span { display: block; }
+  .link .titulo { font-weight: 600; font-size: 1rem; line-height: 1.25; }
+  .link .detalhe { font-size: 0.82rem; opacity: 0.82; }
+
+  .link--whats {
+    background: var(--sand);
+    color: var(--ink);
+    box-shadow: 0 10px 30px -14px rgba(58, 10, 12, 0.7);
+  }
+  .link--whats:hover { background: #FBE9D5; }
+  .link--whats .detalhe { opacity: 0.7; }
+
+  /* ---------- Vitrine ---------- */
+  .vitrine { margin-top: 3.5rem; }
+  .vitrine header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .vitrine h2 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.1rem, 9vw, 2.6rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    color: var(--gold);
+  }
+  .vitrine header p {
+    margin: 0;
+    font-size: 0.82rem;
+    opacity: 0.75;
+    white-space: nowrap;
+  }
+
+  .filtros {
+    display: flex;
+    gap: 0.4rem;
+    margin: 1.1rem 0 1rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .filtros::-webkit-scrollbar { display: none; }
+  .filtros button {
+    flex: none;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    border: 0;
+    cursor: pointer;
+    color: var(--sand);
+    background: rgba(247, 223, 196, 0.1);
+    transition: background-color .18s ease, color .18s ease;
+  }
+  .filtros button:hover { background: rgba(247, 223, 196, 0.18); }
+  .filtros button[aria-pressed="true"] { background: var(--gold); color: var(--ink); }
+
+  .pecas {
+    list-style: none;
+    margin: 0 calc((100vw - 100%) / -2);
+    padding: 0.25rem max(1.25rem, calc((100vw - 27rem) / 2)) 1rem;
+    display: flex;
+    gap: 0.85rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: max(1.25rem, calc((100vw - 27rem) / 2));
+    scrollbar-width: none;
+  }
+  .pecas::-webkit-scrollbar { display: none; }
+  .peca { flex: none; width: min(72vw, 16rem); scroll-snap-align: start; }
+  .peca[hidden] { display: none; }
+  .peca a { display: block; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+  .peca figure { margin: 0; }
+  .peca .foto {
+    border-radius: 1.1rem 1.1rem 0.35rem 0.35rem;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: var(--dusk-3);
+  }
+  .peca img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .peca a:hover img { transform: scale(1.03); }
+  .peca figcaption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding: 0.6rem 0.15rem 0;
+    font-size: 0.9rem;
+  }
+  .peca .nome { font-weight: 500; }
+  .peca .preco { font-variant-numeric: tabular-nums; color: var(--gold); white-space: nowrap; }
+  .peca .pedir {
+    display: block;
+    padding: 0.1rem 0.15rem 0;
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  .peca a:hover .pedir { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ---------- Garantias ---------- */
+  .garantias {
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+  }
+  .garantias li {
+    padding: 1rem 0.4rem 0.9rem;
+    border-radius: 1rem;
+    background: rgba(247, 223, 196, 0.06);
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+  .garantias b {
+    display: block;
+    font-weight: 600;
+    font-size: 1.35rem;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+    font-variant-numeric: lining-nums;
+    color: var(--gold);
+  }
+
+  /* ---------- Rodapé ---------- */
+  footer {
+    width: var(--col);
+    margin: 3.5rem auto 0;
+    padding: 0 0 calc(2.5rem + env(safe-area-inset-bottom));
+    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(247, 223, 196, 0.7);
+  }
+  footer svg { width: 2.6rem; margin: 0 auto 0.6rem; display: block; color: var(--gold); }
+  footer p { margin: 0.15rem 0; }
+  footer .marca {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    letter-spacing: 0.18em;
+    color: var(--sand);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="capa">
+  <h1>Tramonto Joias e Semijoias</h1>
+  <img src="/assets/capa.webp" width="900" height="900" alt="Logo da Tramonto Joias e Semijoias sobre um pôr do sol no mar" fetchpriority="high">
+</div>
+
+<main>
+  <p class="sobre">Semijoias banhadas a <strong>ouro 18k</strong> e folheadas a <strong>prata</strong>. Todas antialérgicas, com 1 ano de garantia.</p>
+
+  <ul class="links">
+    <li>
+      <a class="link link--whats" href="https://wa.me/5575991485009?text=Oi!%20Vim%20pelo%20Instagram%20e%20quero%20ver%20as%20semijoias%20da%20Tramonto." target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 20.5l1.3-4.1A8.5 8.5 0 1 1 8 19.4z"/><path d="M9 8.6c.2-.5.5-.6.8-.6h.5c.2 0 .4.1.5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.5c.2-.1.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.6.8-.6.3-1.6.4-3-.3a8 8 0 0 1-3.8-3.8c-.7-1.4-.6-2.4-.3-3z"/></svg>
+        <span>
+          <span class="titulo">Fazer pedido no WhatsApp</span>
+          <span class="detalhe">(75) 99148-5009</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="/assets/catalogo-tramonto-2026.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 15.5h6"/></svg>
+        <span>
+          <span class="titulo">Catálogo 2026 completo</span>
+          <span class="detalhe">PDF com todas as peças e preços</span>
+        </span>
+      </a>
+    </li>
+    <li>
+      <a class="link" href="https://www.instagram.com/semijoiasdamile" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg>
+        <span>
+          <span class="titulo">Instagram</span>
+          <span class="detalhe">@semijoiasdamile</span>
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <section class="vitrine" aria-labelledby="vitrine-titulo">
+    <header>
+      <h2 id="vitrine-titulo">Coleção Jardim Brilhante</h2>
+    </header>
+
+    <div class="filtros" role="group" aria-label="Filtrar peças">
+      <button type="button" data-filtro="todas" aria-pressed="true">Todas</button>
+      <button type="button" data-filtro="brincos" aria-pressed="false">Brincos</button>
+      <button type="button" data-filtro="conjuntos" aria-pressed="false">Conjuntos</button>
+      <button type="button" data-filtro="aneis" aria-pressed="false">Anéis</button>
+      <button type="button" data-filtro="pulseiras" aria-pressed="false">Pulseiras</button>
+    </div>
+
+    <ul class="pecas" id="pecas"></ul>
+  </section>
+
+  <ul class="garantias">
+    <li><b>18k</b>Banho de 10 a 12 milésimos de ouro</li>
+    <li><b>1 ano</b>De garantia em todas as peças</li>
+  </ul>
+</main>
+
+<footer>
+  <svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+    <path d="M14 28a18 18 0 0 1 36 0"/><path d="M20 28a12 12 0 0 1 24 0"/>
+    <path d="M4 28h56M12 33h40M22 38h20"/>
+  </svg>
+  <p class="marca">TRAMONTO</p>
+  <p>Joias e semijoias</p>
+</footer>
+
+<script>
+  const WHATS = "5575991485009";
+  const pecas = [
+    { id: "conjunto-luxo",        nome: "Conjunto Luxo",        preco: "R$ 140",    cat: "conjuntos" },
+    { id: "brinco-floral",        nome: "Brinco Floral",        preco: "R$ 90",     cat: "brincos" },
+    { id: "anel-mar-profundo",    nome: "Anel Mar Profundo",    preco: "R$ 90",     cat: "aneis" },
+    { id: "love-em-paris",        nome: "Love em Paris",        preco: "R$ 60",     cat: "brincos" },
+    { id: "pulseira-borboleta",   nome: "Pulseira Borboleta",   preco: "R$ 140",    cat: "pulseiras" },
+    { id: "conjunto-geometrico",  nome: "Conjunto Geométrico",  preco: "R$ 89,90",  cat: "conjuntos" },
+    { id: "paty-girl",            nome: "Brinco Paty Girl",     preco: "R$ 30",     cat: "brincos" },
+    { id: "brinco-franjas",       nome: "Brinco Franjas",       preco: "R$ 35",     cat: "brincos" },
+    { id: "brinco-elise",         nome: "Brinco Élise",         preco: "R$ 30",     cat: "brincos" },
+    { id: "brinco-brilhante",     nome: "Brinco Brilhante",     preco: "R$ 42",     cat: "brincos" },
+    { id: "kit-semaninha",        nome: "Kit Semaninha",        preco: "R$ 20 cada", cat: "brincos" },
+    { id: "brincos-que-completam",nome: "Brincos que Completam", preco: "a partir de R$ 36", cat: "brincos" },
+    { id: "brinco-bola-media",    nome: "Brinco Bola Média",    preco: "R$ 25",     cat: "brincos" },
+    { id: "brinco-abacaxi",       nome: "Brinco Abacaxi",       preco: "R$ 25",     cat: "brincos" },
+  ];
+
+  const lista = document.getElementById("pecas");
+  lista.innerHTML = pecas.map(p => {
+    const msg = encodeURIComponent(`Oi! Quero a peça ${p.nome} (${p.preco}) da coleção Jardim Brilhante.`);
+    return `<li class="peca" data-cat="${p.cat}">
+      <a href="https://wa.me/${WHATS}?text=${msg}" target="_blank" rel="noopener">
+        <figure>
+          <div class="foto"><img src="/assets/pecas/${p.id}.webp" width="600" height="600" loading="lazy" alt="${p.nome}"></div>
+          <figcaption><span class="nome">${p.nome}</span><span class="preco">${p.preco}</span></figcaption>
+        </figure>
+        <span class="pedir">Pedir pelo WhatsApp</span>
+      </a>
+    </li>`;
+  }).join("");
+
+  const botoes = document.querySelectorAll(".filtros button");
+  botoes.forEach(b => b.addEventListener("click", () => {
+    const f = b.dataset.filtro;
+    botoes.forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    lista.querySelectorAll(".peca").forEach(li => {
+      li.hidden = f !== "todas" && li.dataset.cat !== f;
+    });
+    lista.scrollTo({ left: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  }));
+</script>
+</body>
+</html>
