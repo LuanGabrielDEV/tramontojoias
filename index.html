@@ -119,6 +119,24 @@
   .pre-abertura .frase,
   .pre-abertura .sobre,
   .pre-abertura .links li { visibility: hidden; }
+  .brilhos { position: absolute; inset: 0; pointer-events: none; }
+  .estrela {
+    position: absolute;
+    width: var(--t, 1rem);
+    height: var(--t, 1rem);
+    margin: calc(var(--t, 1rem) / -2) 0 0 calc(var(--t, 1rem) / -2);
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+  }
+  .estrela::before {
+    content: "";
+    position: absolute;
+    inset: -110%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255, 241, 214, .7), rgba(255, 241, 214, 0));
+  }
+  .estrela svg { position: relative; display: block; width: 100%; height: 100%; fill: #FFF7E8; }
   .capa h1 {
     position: absolute;
     width: 1px; height: 1px;
@@ -351,13 +369,12 @@
   <h1>Tramonto Joias e Semijoias</h1>
   <div class="capa-ceu">
     <img src="/assets/capa.webp" width="900" height="900" alt="Logo da Tramonto Joias e Semijoias sobre um pôr do sol no mar" fetchpriority="high">
-  </div>
-  <div class="brilhos" aria-hidden="true">
-    <svg class="defs" width="0" height="0" style="position:absolute"><defs><radialGradient id="halo"><stop offset="0" stop-color="#FFECC8" stop-opacity=".85"/><stop offset="1" stop-color="#FFECC8" stop-opacity="0"/></radialGradient></defs></svg>
-    <svg class="estrela" viewBox="0 0 20 20" style="left:24%;top:33%;--t:1.1rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
-    <svg class="estrela" viewBox="0 0 20 20" style="left:72%;top:27%;--t:.8rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
-    <svg class="estrela" viewBox="0 0 20 20" style="left:79%;top:52%;--t:1.3rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
-    <svg class="estrela" viewBox="0 0 20 20" style="left:47%;top:70%;--t:.7rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <div class="brilhos" aria-hidden="true">
+      <span class="estrela" style="left:36%;top:30%;--t:1.15rem"><svg viewBox="0 0 20 20"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg></span>
+      <span class="estrela" style="left:66%;top:27%;--t:.8rem"><svg viewBox="0 0 20 20"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg></span>
+      <span class="estrela" style="left:75%;top:61%;--t:1.3rem"><svg viewBox="0 0 20 20"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg></span>
+      <span class="estrela" style="left:29%;top:70%;--t:.7rem"><svg viewBox="0 0 20 20"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg></span>
+    </div>
   </div>
 </div>
 
