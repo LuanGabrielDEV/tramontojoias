@@ -14,6 +14,11 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-400.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/italiana.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-500.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/hanken-600.woff2" crossorigin>
+<script>
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("pre-abertura");
+</script>
 <link rel="preload" as="image" href="/assets/capa.webp">
 <style>
   @font-face { font-family: "Italiana"; src: url(/assets/fonts/italiana.woff2) format("woff2"); font-weight: 400; font-display: swap; }
@@ -82,26 +87,36 @@
     height: 100%;
     object-fit: cover;
     object-position: 50% 30%;
-    -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
-            mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  }
+  .capa::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(209, 120, 48, 0) 62%, var(--dusk-1) 99%);
   }
   .brilhos { position: absolute; inset: 0; pointer-events: none; }
-  .brilhos svg {
+  .brilhos .estrela {
     position: absolute;
     width: var(--t, 1rem);
     aspect-ratio: 1;
     fill: #FFF4DF;
-    filter: drop-shadow(0 0 6px rgba(255, 236, 200, .9));
     opacity: 0;
+    overflow: visible;
   }
   @media (min-width: 34rem) {
-    .capa img {
-      -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%), linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
-      -webkit-mask-composite: source-in;
-              mask-image: linear-gradient(180deg, #000 70%, transparent 100%), linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
-              mask-composite: intersect;
+    .capa::after {
+      background:
+        linear-gradient(180deg, rgba(209, 120, 48, 0) 62%, var(--dusk-1) 99%),
+        linear-gradient(90deg, var(--dusk-1), rgba(209, 120, 48, 0) 18%, rgba(209, 120, 48, 0) 82%, var(--dusk-1));
     }
   }
+
+  /* Antes da abertura começar, os elementos animados ficam ocultos (só com JS e movimento liberado) */
+  .pre-abertura .capa img,
+  .pre-abertura .frase,
+  .pre-abertura .sobre,
+  .pre-abertura .links li { visibility: hidden; }
   .capa h1 {
     position: absolute;
     width: 1px; height: 1px;
@@ -336,10 +351,11 @@
     <img src="/assets/capa.webp" width="900" height="900" alt="Logo da Tramonto Joias e Semijoias sobre um pôr do sol no mar" fetchpriority="high">
   </div>
   <div class="brilhos" aria-hidden="true">
-    <svg viewBox="0 0 20 20" style="left:24%;top:33%;--t:1.1rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
-    <svg viewBox="0 0 20 20" style="left:72%;top:27%;--t:.8rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
-    <svg viewBox="0 0 20 20" style="left:79%;top:52%;--t:1.3rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
-    <svg viewBox="0 0 20 20" style="left:47%;top:70%;--t:.7rem"><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg class="defs" width="0" height="0" style="position:absolute"><defs><radialGradient id="halo"><stop offset="0" stop-color="#FFECC8" stop-opacity=".85"/><stop offset="1" stop-color="#FFECC8" stop-opacity="0"/></radialGradient></defs></svg>
+    <svg class="estrela" viewBox="0 0 20 20" style="left:24%;top:33%;--t:1.1rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg class="estrela" viewBox="0 0 20 20" style="left:72%;top:27%;--t:.8rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg class="estrela" viewBox="0 0 20 20" style="left:79%;top:52%;--t:1.3rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
+    <svg class="estrela" viewBox="0 0 20 20" style="left:47%;top:70%;--t:.7rem"><circle cx="10" cy="10" r="15" fill="url(#halo)"/><path d="M10 0c.6 5.2 4.8 9.4 10 10-5.2.6-9.4 4.8-10 10-.6-5.2-4.8-9.4-10-10C5.2 9.4 9.4 5.2 10 0z"/></svg>
   </div>
 </div>
 
@@ -438,7 +454,7 @@
     return `<li class="peca" data-cat="${p.cat}">
       <a href="https://wa.me/${WHATS}?text=${msg}" target="_blank" rel="noopener">
         <figure>
-          <div class="foto"><img src="/assets/pecas/${p.id}.webp" width="600" height="600" loading="lazy" alt="${p.nome}"></div>
+          <div class="foto"><img src="/assets/pecas/${p.id}.webp" width="600" height="600" loading="lazy" decoding="async" alt="${p.nome}"></div>
           <figcaption><span class="nome">${p.nome}</span><span class="preco">${p.preco}</span></figcaption>
         </figure>
         <span class="pedir">Pedir pelo WhatsApp</span>
@@ -475,71 +491,126 @@
   }));
 
   /* Coreografia: só para quem não pediu menos movimento */
-  const mm = gsap.matchMedia();
-  mm.add("(prefers-reduced-motion: no-preference)", () => {
+  const raiz = document.documentElement;
+  const liberar = () => raiz.classList.remove("pre-abertura");
+  setTimeout(liberar, 3000); // rede de segurança: nada fica escondido se algo falhar
 
-    // 1. Abertura: o céu clareia, a frase sobe letra a letra, os links chegam em fila
-    const frase = SplitText.create(".frase", { type: "words,chars", mask: "words" });
-    const abertura = gsap.timeline({ defaults: { ease: "expo.out" } });
-    abertura
-      .from(".capa img", { autoAlpha: 0, scale: 1.12, duration: 2 })
-      .from(frase.chars, { yPercent: 110, duration: 1, stagger: 0.022 }, "-=1.3")
-      .from(".sobre", { autoAlpha: 0, y: 14, duration: 0.9 }, "-=0.7")
-      .from(".links li", { autoAlpha: 0, y: 28, duration: 0.9, stagger: 0.09 }, "-=0.65");
+  // A barra de endereço do celular aparece/some ao rolar; isso não deve recalcular as animações
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
-    // 2. Brilhos piscando sobre o sol, como reflexo em joia
-    gsap.utils.toArray(".brilhos svg").forEach((estrela, n) => {
-      gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(1.8, 4.2), delay: 1.4 + n * 0.55 })
-        .fromTo(estrela, { autoAlpha: 0, scale: 0, rotate: -45 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.45, ease: "back.out(2)" })
-        .to(estrela, { autoAlpha: 0, scale: 0, rotate: 45, duration: 0.55, ease: "power2.in" }, "+=0.15");
-    });
+  // Só começa com fontes carregadas e a capa decodificada, para o texto não ser medido duas vezes
+  const capa = document.querySelector(".capa img");
+  const espera = ms => new Promise(r => setTimeout(r, ms));
+  Promise.race([
+    Promise.all([document.fonts.ready, capa.decode ? capa.decode().catch(() => {}) : null]),
+    espera(1500)
+  ]).then(() => requestAnimationFrame(iniciar));
 
-    // 3. Reflexo dourado atravessando o botão do WhatsApp
-    gsap.fromTo(".reflexo", { xPercent: -150 }, { xPercent: 360, duration: 1.2, ease: "power2.inOut", repeat: -1, repeatDelay: 3.6, delay: 2.4 });
+  function iniciar() {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", contexto => {
 
-    // 4. O sol da capa afunda devagar enquanto a página rola
-    gsap.to(".capa-ceu", {
-      yPercent: 18, ease: "none",
-      scrollTrigger: { trigger: ".capa", start: "top top", end: "bottom top", scrub: true }
-    });
+      // 1. Abertura: o céu clareia, a frase sobe letra a letra, os links chegam em fila
+      const frase = SplitText.create(".frase", { type: "words,chars", mask: "words" });
+      const abertura = gsap.timeline({ defaults: { ease: "expo.out", force3D: true } });
+      abertura
+        .from(capa, { autoAlpha: 0, scale: 1.08, duration: 1.6 })
+        .from(frase.chars, { yPercent: 140, duration: 0.9, stagger: 0.02 }, "-=1.1")
+        .from(".sobre", { autoAlpha: 0, y: 14, duration: 0.8 }, "-=0.6")
+        .from(".links li", { autoAlpha: 0, y: 24, duration: 0.8, stagger: 0.08 }, "-=0.6");
+      liberar();
 
-    // 5. Título da vitrine e peças entrando
-    const titulo = SplitText.create("#vitrine-titulo", { type: "words,chars", mask: "words" });
-    gsap.from(titulo.chars, {
-      yPercent: 110, duration: 0.9, ease: "expo.out", stagger: 0.018,
-      scrollTrigger: { trigger: ".vitrine", start: "top 82%", once: true }
-    });
-    gsap.from(".filtros button", {
-      autoAlpha: 0, y: 12, duration: 0.6, ease: "power3.out", stagger: 0.05,
-      scrollTrigger: { trigger: ".filtros", start: "top 88%", once: true }
-    });
-    gsap.from(".peca", {
-      autoAlpha: 0, x: 70, rotate: 2, duration: 1, ease: "expo.out", stagger: 0.08,
-      scrollTrigger: { trigger: ".pecas", start: "top 85%", once: true }
-    });
+      // 2. Brilhos piscando sobre o sol; param quando a capa sai da tela
+      const brilhos = gsap.utils.toArray(".brilhos .estrela").map((estrela, n) =>
+        gsap.timeline({ repeat: -1, repeatDelay: gsap.utils.random(1.8, 4.2), delay: 1.4 + n * 0.55 })
+          .fromTo(estrela, { autoAlpha: 0, scale: 0, rotate: -45 }, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.45, ease: "back.out(2)" })
+          .to(estrela, { autoAlpha: 0, scale: 0, rotate: 45, duration: 0.55, ease: "power2.in" }, "+=0.15")
+      );
 
-    // 6. Números da garantia contando
-    gsap.utils.toArray(".conta").forEach(el => {
-      const alvo = { v: 0 };
-      gsap.to(alvo, {
-        v: +el.dataset.ate, duration: 1.4, ease: "power2.out",
-        onUpdate: () => { el.textContent = Math.round(alvo.v); },
-        scrollTrigger: { trigger: el, start: "top 90%", once: true }
+      // 3. Reflexo dourado no botão do WhatsApp; pausa fora da tela
+      const reflexo = gsap.fromTo(".reflexo", { xPercent: -150 }, { xPercent: 360, duration: 1.2, ease: "power2.inOut", repeat: -1, repeatDelay: 3.6, delay: 2.2 });
+
+      // Itens que entram ao rolar já começam ocultos, para não aparecerem e depois sumirem
+      const pecasVisiveis = gsap.utils.toArray(".peca").slice(0, 3);
+      gsap.set(["#vitrine-titulo", ".filtros button", pecasVisiveis, ".garantias li"], { autoAlpha: 0 });
+
+      // O resto (efeitos de rolagem) é montado depois que a abertura termina,
+      // para que a primeira animação não divida o processador com esses cálculos
+      let titulo;
+      contexto.add("montarRolagem", () => {
+        // Brilhos e reflexo pausam quando saem da tela
+        ScrollTrigger.create({
+          trigger: ".capa", start: "top top", end: "bottom top",
+          onToggle: st => brilhos.forEach(t => st.isActive ? t.resume() : t.pause())
+        });
+        ScrollTrigger.create({
+          trigger: ".link--whats", start: "top bottom", end: "bottom top",
+          onToggle: st => st.isActive ? reflexo.resume() : reflexo.pause()
+        });
+        // 4. O sol da capa afunda devagar enquanto a página rola
+        gsap.to(".capa-ceu", {
+          yPercent: 16, ease: "none", force3D: true,
+          scrollTrigger: { trigger: ".capa", start: "top top", end: "bottom top", scrub: true }
+        });
+
+        // 5. Título da vitrine e peças entrando
+        titulo = SplitText.create("#vitrine-titulo", { type: "words,chars", mask: "words" });
+        gsap.set("#vitrine-titulo", { autoAlpha: 1 });
+        gsap.fromTo(titulo.chars, { yPercent: 140 }, {
+          yPercent: 0, duration: 0.9, ease: "expo.out", stagger: 0.018,
+          scrollTrigger: { trigger: ".vitrine", start: "top 88%", once: true }
+        });
+        gsap.fromTo(".filtros button", { autoAlpha: 0, y: 12 }, {
+          autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out", stagger: 0.05,
+          scrollTrigger: { trigger: ".vitrine", start: "top 88%", once: true }
+        });
+        // Só as peças visíveis na faixa entram animadas; as demais já ficam no lugar
+        gsap.fromTo(pecasVisiveis, { autoAlpha: 0, x: 60 }, {
+          autoAlpha: 1, x: 0, duration: 0.9, ease: "expo.out", stagger: 0.08, force3D: true,
+          clearProps: "transform",
+          scrollTrigger: { trigger: ".pecas", start: "top 92%", once: true }
+        });
+
+        // 6. Números da garantia contando
+        gsap.utils.toArray(".conta").forEach(el => {
+          const alvo = { v: 0 };
+          gsap.to(alvo, {
+            v: +el.dataset.ate, duration: 1.4, ease: "power2.out",
+            onUpdate: () => { el.textContent = Math.round(alvo.v); },
+            scrollTrigger: { trigger: ".garantias", start: "top 92%", once: true }
+          });
+        });
+        gsap.fromTo(".garantias li", { autoAlpha: 0, y: 24 }, {
+          autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.1,
+          scrollTrigger: { trigger: ".garantias", start: "top 92%", once: true }
+        });
+
+        // 7. No rodapé, o sol do logo se põe no mar
+        gsap.fromTo("#sol", { y: -10 }, {
+          y: 11, ease: "none",
+          scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: 0.6 }
+        });
+
       });
-    });
-    gsap.from(".garantias li", {
-      autoAlpha: 0, y: 24, duration: 0.8, ease: "power3.out", stagger: 0.1,
-      scrollTrigger: { trigger: ".garantias", start: "top 90%", once: true }
-    });
+      // Monta ao fim da abertura ou no primeiro gesto de rolagem, o que vier antes
+      let montado = false;
+      const montar = () => {
+        if (montado) return;
+        montado = true;
+        removeEventListener("scroll", montar);
+        removeEventListener("touchstart", montar);
+        contexto.montarRolagem();
+      };
+      addEventListener("scroll", montar, { passive: true, once: true });
+      addEventListener("touchstart", montar, { passive: true, once: true });
+      abertura.eventCallback("onComplete", () => {
+        "requestIdleCallback" in window ? requestIdleCallback(montar, { timeout: 400 }) : setTimeout(montar, 50);
+      });
 
-    // 7. No rodapé, o sol do logo se põe no mar
-    gsap.fromTo("#sol", { y: -10 }, {
-      y: 11, ease: "none",
-      scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: 0.6 }
+      return () => { frase.revert(); titulo && titulo.revert(); };
     });
-
-    return () => { frase.revert(); titulo.revert(); };
-  });
+    liberar();
+  }
 </script>
 </body>
 </html>
